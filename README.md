@@ -1,4 +1,4 @@
-Mateo Vozila
-Piero Battelli
-David Brajković
+Mateo Vozila  
+Piero Battelli  
+David Brajković  
 Tema: Prikaz i označavanje koda
