@@ -1,0 +1,301 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{default}     
+  \usecolortheme{default} 
+  \usefonttheme{default}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{listings}
+\usepackage{verbatim}
+
+\title[Your Short Title]{Prikaz i oznacavanje koda u LaTeX-u}
+\author{M. Vozila, P. Battelli i D. Brajkovic}
+\date{19.1.2018.}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\section{Uvod}
+
+\begin{frame}{Uvod}
+
+\begin{itemize}
+  \item Oznacavanje putem LaTex-a koristi se za formatiranje i oznacavanje samog koda
+  \item Povecava preglednost koda
+\end{itemize}
+
+\vskip 1cm
+
+
+
+\end{frame}
+
+
+
+\begin{frame}{Paketi za oznacavanje koda}
+
+\begin{itemize}
+
+\item Postoji nekoliko paketa za oznacavanje koda
+\item Podjeljeni su u dvije grupe:  \begin{enumerate}  \item Paketi ispisa
+										  \item Paketi algoritama
+                      \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+\section{Paketi ispisa}
+
+\begin{frame}{Paketi ispisa}
+
+\begin{itemize}
+\item Listings package
+\item Minted package
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Listings package}
+
+\begin{itemize}
+\item Primarno se ovaj paket koristi za unos izvornog koda drugog programskog jezika u nas dokument
+\item Ovim se paketom takoder pruza mogucnost odabira stila teksta
+\item Paket aktiviramo naredbom usepackage
+
+\end{itemize}
+
+\end{frame}
+
+\begin{verbatim}
+Primjer koda:
+
+\documentclass{article}
+\usepackage{listings}            
+\begin{document}
+\lstset{language=Pascal}      
+\begin[frame=single]{lstlisting}  
+for i:=maxint to 0 do
+begin
+{ do nothing }
+end;
+Write('Case insensitive ');
+Write('Pascal keywords.');
+\end{lstlisting}
+
+\end{document}
+\end{verbatim}
+
+
+\begin{frame}{Minted package}
+
+\begin{itemize}
+\item Alternativa paketa listings
+\item Koristi Pythonov library "pygments" za oznacavanje koda
+\item Slozenija instalacija od ostalih paketa
+
+\end{itemize}
+
+\end{frame}
+
+\begin{verbatim}
+Primjer koda:
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{minted}
+\begin{document}
+\begin{minted}{python}
+import numpy as np
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+\end{minted}
+\end{document}
+\end{verbatim}
+
+\section{Paketi algoritama}
+
+\begin{frame}{Paketi algoritama}
+
+\begin{itemize}
+\item Algorithmic
+\item Algorithm2e
+\item Algorithmicx
+\item Program
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Algorithmic}
+
+\begin{itemize}
+\item Koristi se za radove koji prate IEEE standard
+\item Slican paketu "Algorithmicx", ali razlikuju se u pravopisu
+\item Koristi "Algorithm environment" koji sluzi za sprjecavanje odvajanja dokumenta na dvije stranice
+
+\end{itemize}
+
+\end{frame}
+
+\begin{verbatim}
+Primjer koda:
+
+
+\STATE <text>
+ \IF{<condition>} \STATE {<text>} \ELSE \STATE{<text>} \ENDIF
+ \IF{<condition>} \STATE {<text>} \ELSIF{<condition>} \STATE{<text>} \ENDIF
+ \FOR{<condition>} \STATE {<text>} \ENDFOR
+ \FOR{<condition> \TO <condition> } \STATE {<text>} \ENDFOR
+ \FORALL{<condition>} \STATE{<text>} \ENDFOR
+ \WHILE{<condition>} \STATE{<text>} \ENDWHILE
+ \REPEAT \STATE{<text>} \UNTIL{<condition>}
+ \LOOP \STATE{<text>} \ENDLOOP
+ \REQUIRE <text>
+ \ENSURE <text>
+ \RETURN <text>
+ \PRINT <text>
+ \COMMENT{<text>}
+ \AND, \OR, \XOR, \NOT, \TO, \TRUE, \FALSE
+\end{verbatim}
+
+
+
+\begin{frame}{Algorithm2e}
+
+\begin{itemize}
+
+\item Nastao 1995. godine
+\item U vecini svojstava slican Algotihmic paketu
+\item Za razliku od Algorithmic paketa, ovaj paket pruza vise mogucnosti uredivanja
+
+
+\end{itemize}
+
+\end{frame}
+\begin{verbatim}
+Primjer koda:
+
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{how to write algorithm with \LaTeX2e }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
+\end{verbatim}
+
+
+
+
+\begin{frame}{Algorithincx}
+
+\begin{itemize}
+
+\item pruza siroki spektar dizajna algoritama
+\item izvorni kod u LaTeX-u je napisan da bude poznat programerima, bez da utijece na krajnji dokument
+
+\end{itemize}
+
+\end{frame}
+
+\begin{verbatim}
+Primjer koda
+
+\algblock[Name]{Start}{End}
+\algblockdefx[NAME]{START}{END}%
+    [2][Unknown]{Start #1(#2)}%
+    {Ending}
+\algblockdefx[NAME]{}{OTHEREND}%
+    [1]{Until (#1)}
+\begin{algorithmic}
+\Start
+    \Start
+        \START{0}
+    \End
+    \Start
+    \End
+\End
+\end{algorithmic}
+
+\end{verbatim}
+
+
+
+
+\begin{frame}{Program}
+
+\begin{itemize}
+
+\item Koristi makronaredbe
+\item Svaki red je napisan u matematickom kodu tako da se uvlake i razmaci rade automatski
+
+\end{itemize}
+
+\end{frame}
+
+\begin{verbatim}
+Primjer koda:
+
+\begin{program}
+\mbox{A fast exponentiation procedure:}
+\BEGIN \\ %
+  \FOR i:=1 \TO 10 \STEP 1 \DO
+     |expt|(2,i); \\ |newline|() \OD %
+\rcomment{This text will be set flush to the right margin}
+\PROC |expt|(x,n) \BODY
+          z:=1;
+          \DO \IF n=0 \THEN \EXIT \FI;
+             \DO \IF |odd|(n) \THEN \EXIT \FI;
+\COMMENT{This is a comment statement};
+                n:=n/2; x:=x*x \OD;
+             \{ n>0 \};
+             n:=n-1; z:=z*x \OD;
+          |print|(z) \ENDPROC
+\END
+\end{program}
+\end{verbatim}
+\section{Izvori}
+\begin{verbatim}
+		Izvori:
+        
+        
+        
+https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+
+https://en.wikibooks.org/wiki/LaTeX/Algorithms
+
+https://www.latex-tutorial.com/tutorials/listings
+
+
+\end{verbatim}
+
+\begin{frame}{Sadrzaj}
+\tableofcontents
+\end{frame}
+
+\end{document}
+
